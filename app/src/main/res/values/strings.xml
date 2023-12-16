@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">finalproject323</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_recent_orders">Recent Orders</string>
+    <string name="nav_calendar_view">Calendar View</string>
+    <string name="nav_sign_out">Sign Out</string>
+    <string name="favorite_restaurants">Favorite Restaurants</string>
+    <string name="all_restaurants">All Restaurants</string>
+    <string name="action_search">Search</string>
+    <string name="user_name">Name</string>
+    <string name="user_email">Email</string>
+    <string name="restaurant_image">Restaurant Image</string>
+
+    <string name="drawer_open">Open drawer</string>
+    <string name="drawer_close">Close drawer</string>
+
+
+</resources>
