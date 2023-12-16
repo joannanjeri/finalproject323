@@ -17,6 +17,9 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 
+/**
+ * activity for user sign up screen
+ */
 class SignUpScreen : AppCompatActivity() {
     private lateinit var profileImageView: ImageView
     private lateinit var nameEditText: EditText
@@ -31,6 +34,9 @@ class SignUpScreen : AppCompatActivity() {
         private const val PERMISSION_REQUEST_CODE = 300
     }
 
+    /**
+     * initializes the activity
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -58,6 +64,9 @@ class SignUpScreen : AppCompatActivity() {
         }
     }
 
+    /**
+     * registers a new user with firebase auth
+     */
     private fun registerUser(name: String, email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
@@ -74,7 +83,6 @@ class SignUpScreen : AppCompatActivity() {
                                 baseContext, "Registration successful with name: $name",
                                 Toast.LENGTH_SHORT
                             ).show()
-                            // Navigate to the next activity or update UI
                         }
                     }
                 } else {
@@ -86,12 +94,18 @@ class SignUpScreen : AppCompatActivity() {
             }
     }
 
+    /**
+     * navigates to the home screen after successful registration
+     */
     private fun navigateToHomeScreen() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
-        finish() // Call finish() if you don't want the user to return to the SignUpScreen.
+        finish()
     }
 
+    /**
+     * validates user input form
+     */
     private fun validateForm(name: String, email: String, password: String): Boolean {
         if (name.isEmpty()) {
             nameEditText.error = "Please enter your name."
@@ -108,6 +122,9 @@ class SignUpScreen : AppCompatActivity() {
         return true
     }
 
+    /**
+     * shows dialog for image upload options
+     */
     private fun showImageUploadDialog() {
         val options = arrayOf("Choose from Gallery", "Camera")
         val builder = AlertDialog.Builder(this)
@@ -121,6 +138,9 @@ class SignUpScreen : AppCompatActivity() {
         builder.show()
     }
 
+    /**
+     * checks permission and opens gallery if granted
+     */
     private fun checkPermissionAndOpenGallery() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
             != PackageManager.PERMISSION_GRANTED) {
@@ -131,11 +151,17 @@ class SignUpScreen : AppCompatActivity() {
         }
     }
 
+    /**
+     * opens the gallery for image selection
+     */
     private fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent, REQUEST_GALLERY)
     }
 
+    /**
+     * checks permission and opens camera if granted
+     */
     private fun checkPermissionAndOpenCamera() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
             != PackageManager.PERMISSION_GRANTED) {
@@ -146,11 +172,17 @@ class SignUpScreen : AppCompatActivity() {
         }
     }
 
+    /**
+     * opens the camera for taking a photo
+     */
     private fun openCamera() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(intent, REQUEST_CAMERA)
     }
 
+    /**
+     * handles the result of permission request
+     */
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
@@ -158,12 +190,15 @@ class SignUpScreen : AppCompatActivity() {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     openGallery()
                 } else {
-                    // Permission denied, let the user know via a dialog or a toast
+
                 }
             }
         }
     }
 
+    /**
+     * handles the result of image selection from gallery or camera
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {

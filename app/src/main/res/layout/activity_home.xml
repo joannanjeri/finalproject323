@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- AppBar with Search Icon -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -29,7 +28,6 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <!-- Horizontal Scroll for Favorite Restaurants -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewFavoriteRestaurants"
         android:layout_width="match_parent"
@@ -37,12 +35,11 @@
         android:layout_below="@id/toolbar"
         android:orientation="horizontal"
         android:layout_marginTop="8dp"
-        android:padding="16dp"
+        android:padding="15dp"
         android:clipToPadding="false"
         android:scrollbars="horizontal"
         android:overScrollMode="never"/>
 
-    <!-- Label for All Restaurants -->
     <TextView
         android:id="@+id/textViewAllRestaurantsLabel"
         android:layout_width="wrap_content"
@@ -53,13 +50,13 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="15dp"/>
 
-    <!-- Vertical Scroll for All Restaurants -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewAllRestaurants"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/textViewAllRestaurantsLabel"
         android:orientation="vertical"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp"
+        android:padding="15dp"/>
 
 </RelativeLayout>

@@ -5,11 +5,18 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 
+/**
+ * activity for displaying recent orders
+ */
 class RecentOrders : AppCompatActivity() {
 
     private lateinit var listView: ListView
     private lateinit var databaseHelper: DatabaseHelper
 
+    /**
+     * initializes the activity
+     * sets up the list view and database helper
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.recent_orders)
@@ -20,6 +27,9 @@ class RecentOrders : AppCompatActivity() {
         displayRecentOrders()
     }
 
+    /**
+     * fetches recent orders from the database and displays them in the list view
+     */
     private fun displayRecentOrders() {
         val ordersList = databaseHelper.getRecentOrders()
 

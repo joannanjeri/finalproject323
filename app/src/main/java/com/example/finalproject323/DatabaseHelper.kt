@@ -4,8 +4,16 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
+/**
+ * helper class for managing database creation and version management
+ * @property context the context where the database should be created
+ */
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
+    /**
+     * called when the database is created for the first time
+     * @param db the database
+     */
     override fun onCreate(db: SQLiteDatabase) {
         val createOrderTable = """
             CREATE TABLE $TABLE_ORDERS (
@@ -17,11 +25,21 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db.execSQL(createOrderTable)
     }
 
+    /**
+     * called when the database needs to be upgraded
+     * @param db the database
+     * @param oldVersion the old database version
+     * @param newVersion the new database version
+     */
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS $TABLE_ORDERS")
         onCreate(db)
     }
 
+    /**
+     * retrieves a list of recent orders from the database
+     * @return list of orders
+     */
     fun getRecentOrders(): List<Order> {
         val orders = mutableListOf<Order>()
         val db = this.readableDatabase

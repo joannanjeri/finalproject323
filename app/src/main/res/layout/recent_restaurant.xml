@@ -30,6 +30,15 @@
             android:gravity="center"
             android:text="Restaurant Name"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+        <TextView
+            android:id="@+id/restaurantLocationTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Restaurant Location"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:layout_marginTop="4dp"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
